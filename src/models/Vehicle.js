@@ -1,13 +1,17 @@
 export default class Vehicle {
-    size: number;
-    symbol: string;
+    size;
+    symbol;
     license;
 
-    constructor(license: string) {
-        this.license = license;
+    constructor(license) {
+        this._license = license;
     };
 
-    can_park(parking_size: number): boolean {
+    can_park(parking_size) {
         return this.size <= parking_size;
+    }
+
+    get license() {
+        return this._license;
     }
 }

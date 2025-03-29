@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 
 export default function Home() {
-    const [items, setItems] = useState([]);
-    const [form, setForm] = useState({ name: '', description: '' });
+    const [vehicles, setVehicles] = useState([]);
+    const [form, setForm] = useState({ vehicleType: '', license: '' });
 
     useEffect(() => {
-        fetchItems();
+        fetchVehicles();
     }, []);
 
-    const fetchItems = async () => {
-        const res = await fetch('/api/items');
+    const fetchVehicles = async () => {
+        const res = await fetch('/api/parking-lot');
         const data = await res.json();
-        setItems(data.data);
+        setVehicles(data.data);
     };
 
     const handleChange = (e) => {
@@ -21,15 +21,15 @@ export default function Home() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await fetch('/api/items', {
+            await fetch('/api/parking-lot', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(form),
             });
-            fetchItems();
-            setForm({ name: '', description: '' });
+            fetchVehicles();
+            setForm({ vehicleType: '', license: '' });
         } catch (error) {
             console.log(error);
         }
@@ -37,32 +37,31 @@ export default function Home() {
 
     return (
         <div>
-            <h1>Items</h1>
+            <h1>Vehicles</h1>
             <form onSubmit={handleSubmit}>
+                <select name="vehicleType" id="vehicle type" value={form.vehicleType} onChange={handleChange}>
+                    <option value="Car">Car</option>
+                    <option value="Motorcycle">Motorcycle</option>
+                    <option value="Bus">Bus</option>
+                </select>
                 <input
-                    name="name"
-                    placeholder="Item name"
-                    value={form.name}
+                    name="license"
+                    placeholder="Vehicle license"
+                    value={form.license}
                     onChange={handleChange}
                 />
-                <input
-                    name="description"
-                    placeholder="Item description"
-                    value={form.description}
-                    onChange={handleChange}
-                />
-                <button type="submit">Add Item</button>
+                <button type="submit">Park Vehicle</button>
             </form>
 
             <ul>
-                {Array.isArray(items) && items.length > 0 ? (
-                    items.map((item) => (
-                        <li key={item._id}>
-                            {item.name} - {item.description}
+                {Array.isArray(vehicles) && vehicles.length > 0 ? (
+                    vehicles.map((vehicle) => (
+                        <li key={vehicle._id}>
+                            {vehicle.symbol} - {vehicle.license}
                         </li>
                     ))
                 ) : (
-                    <li>No items to display</li>
+                    <li>EMPTY</li>
                 )}
             </ul>
         </div>
