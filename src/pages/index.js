@@ -55,11 +55,15 @@ export default function Home() {
             </form>
 
             <ul>
-                {items.map((item) => (
-                    <li key={item._id}>
-                        {item.name} - {item.description}
-                    </li>
-                ))}
+                {Array.isArray(items) && items.length > 0 ? (
+                    items.map((item) => (
+                        <li key={item._id}>
+                            {item.name} - {item.description}
+                        </li>
+                    ))
+                ) : (
+                    <li>No items to display</li>
+                )}
             </ul>
         </div>
     );
