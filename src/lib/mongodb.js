@@ -1,34 +1,34 @@
-// lib/mongodb.js
 import mongoose from 'mongoose';
-import ItemSchema from '../models/Item.js';
 
-const MONGODB_URI = process.env.MONGODB_URI;
 
-if (!MONGODB_URI) {
-    throw new Error('Please define the MONGODB_URI environment variable');
-}
+export default class mongodb {
+    static instance = null;
+    cached = { conn: null, promise: null };
+    uri = process.env.MONGODB_URI;
 
-/**
- * Cached connection for MongoDB.
- */
-let cached = global.mongoose;
+    constructor() {
+        if (mongodb.instance == null) {
+            mongodb.instance = this;
 
-if (!cached) {
-    cached = global.mongoose = { conn: null, promise: null };
-}
-
-async function dbConnect() {
-    if (cached.conn) {
-        return cached.conn;
+            if (!this.uri) {
+                throw new Error('Please define the MONGODB_URI environment variable');
+            }
+            this.cached = mongoose;
+        }
+        return mongodb.instance;
     }
 
-    if (!cached.promise) {
-        cached.promise = mongoose.connect(MONGODB_URI).then((mongoose) => {
-            return mongoose;
-        });
-    }
-    cached.conn = await cached.promise;
-    return cached.conn;
-}
+    async dbConnect() {
+        if (this.cached.conn) {
+            return this.cached.conn;
+        }
 
-export default dbConnect || mongoose.models.Item || mongoose.model('Item', ItemSchema);
+        if (!this.cached.promise) {
+            this.cached.promise = mongoose.connect(this.uri).then((mongoose) => {
+                return mongoose;
+            });
+        }
+        this.cached.conn = await this.cached.promise;
+        return this.cached.conn;
+    }
+}

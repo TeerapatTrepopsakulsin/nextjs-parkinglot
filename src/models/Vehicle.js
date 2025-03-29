@@ -1,10 +1,13 @@
 export default class Vehicle {
-    private size: number;
-    private symbol: string;
+    size: number;
+    symbol: string;
+    license;
 
-    public constructor();
+    constructor(license: string) {
+        this.license = license;
+    };
 
-    public can_park(parking_size: number): boolean {
+    can_park(parking_size: number): boolean {
         return this.size <= parking_size;
     }
 }
