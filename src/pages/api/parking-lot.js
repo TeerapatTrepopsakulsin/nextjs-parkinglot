@@ -13,8 +13,8 @@ export default async function handler(req, res) {
     switch (method) {
         case 'GET':
             try {
-                const cars = await model.carModel.find({});
-                res.status(200).json({ success: true, data: cars });
+                const parkingLot = await model.parkingLotModel.find({}).populate(model.jsonSchema).exec();
+                res.status(200).json({ success: true, data: parkingLot });
             } catch (error) {
                 res.status(400).json({ success: false , message: error.message });
             }

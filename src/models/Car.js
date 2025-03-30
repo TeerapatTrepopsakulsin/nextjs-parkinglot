@@ -6,11 +6,7 @@ export default class Car extends Vehicle{
     static symbol = "C";
     license;
 
-    static schema = {
-        size: { type: 'string', required: true, default: 2 },
-        symbol: { type: 'string', required: true, default: "C" },
-        license: { type: 'string', required: true }
-    };
+    static schema = {};
 
     constructor(license) {
         super(license);

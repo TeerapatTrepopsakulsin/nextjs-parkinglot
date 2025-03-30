@@ -1,0 +1,63 @@
+[{
+  "_id": {
+    "$oid": "67e8ecc90e5ab887b7caab30"
+  },
+  "floor": 1,
+  "spots": [
+    {
+      "$oid": "67e8e1560e5ab887b7caab24"
+    },
+    {
+      "$oid": "67e904e70e5ab887b7caab57"
+    },
+    {
+      "$oid": "67e906400e5ab887b7caab70"
+    },
+    {
+      "$oid": "67e906690e5ab887b7caab73"
+    },
+    {
+      "$oid": "67e9066f0e5ab887b7caab74"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67e9081f0e5ab887b7caab8d"
+  },
+  "floor": 2,
+  "spots": [
+    {
+      "$oid": "67e906990e5ab887b7caab75"
+    },
+    {
+      "$oid": "67e906a00e5ab887b7caab76"
+    },
+    {
+      "$oid": "67e906af0e5ab887b7caab77"
+    },
+    {
+      "$oid": "67e906b60e5ab887b7caab78"
+    },
+    {
+      "$oid": "67e906bc0e5ab887b7caab79"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67e9082b0e5ab887b7caab8e"
+  },
+  "floor": 3,
+  "spots": [
+    {
+      "$oid": "67e906d30e5ab887b7caab7a"
+    },
+    {
+      "$oid": "67e906f20e5ab887b7caab7b"
+    },
+    {
+      "$oid": "67e907070e5ab887b7caab7c"
+    }
+  ]
+}]

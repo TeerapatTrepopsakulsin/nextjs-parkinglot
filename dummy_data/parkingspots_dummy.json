@@ -1,0 +1,148 @@
+[{
+  "_id": {
+    "$oid": "67e8e11d0e5ab887b7caab21"
+  }
+},
+{
+  "_id": {
+    "$oid": "67e8e1560e5ab887b7caab24"
+  },
+  "size": 2,
+  "symbol": "c",
+  "spotNum": 101,
+  "vehicle": {
+    "$oid": "67e8dd0b012fc8a6db1128aa"
+  }
+},
+{
+  "_id": {
+    "$oid": "67e904e70e5ab887b7caab57"
+  },
+  "size": 2,
+  "symbol": "c",
+  "spotNum": 102,
+  "vehicle": {
+    "$oid": "67e8cf1d30fef2a9e24b19fa"
+  }
+},
+{
+  "_id": {
+    "$oid": "67e906400e5ab887b7caab70"
+  },
+  "size": 2,
+  "symbol": "c",
+  "spotNum": 103,
+  "vehicle": {
+    "$oid": "67e906340e5ab887b7caab6e"
+  }
+},
+{
+  "_id": {
+    "$oid": "67e906690e5ab887b7caab73"
+  },
+  "size": 1,
+  "symbol": "m",
+  "spotNum": 104,
+  "vehicle": {
+    "$oid": "67e906340e5ab887b7caab6e"
+  }
+},
+{
+  "_id": {
+    "$oid": "67e9066f0e5ab887b7caab74"
+  },
+  "size": 1,
+  "symbol": "m",
+  "spotNum": 105,
+  "vehicle": {
+    "$oid": "67e906340e5ab887b7caab6e"
+  }
+},
+{
+  "_id": {
+    "$oid": "67e906990e5ab887b7caab75"
+  },
+  "size": 3,
+  "symbol": "b",
+  "spotNum": 201,
+  "vehicle": {
+    "$oid": "67e906340e5ab887b7caab6e"
+  }
+},
+{
+  "_id": {
+    "$oid": "67e906a00e5ab887b7caab76"
+  },
+  "size": 3,
+  "symbol": "b",
+  "spotNum": 202,
+  "vehicle": {
+    "$oid": "67e906340e5ab887b7caab6e"
+  }
+},
+{
+  "_id": {
+    "$oid": "67e906af0e5ab887b7caab77"
+  },
+  "size": 3,
+  "symbol": "b",
+  "spotNum": 203,
+  "vehicle": {
+    "$oid": "67e906340e5ab887b7caab6e"
+  }
+},
+{
+  "_id": {
+    "$oid": "67e906b60e5ab887b7caab78"
+  },
+  "size": 3,
+  "symbol": "b",
+  "spotNum": 204,
+  "vehicle": {
+    "$oid": "67e906340e5ab887b7caab6e"
+  }
+},
+{
+  "_id": {
+    "$oid": "67e906bc0e5ab887b7caab79"
+  },
+  "size": 3,
+  "symbol": "b",
+  "spotNum": 205,
+  "vehicle": {
+    "$oid": "67e906340e5ab887b7caab6e"
+  }
+},
+{
+  "_id": {
+    "$oid": "67e906d30e5ab887b7caab7a"
+  },
+  "size": 3,
+  "symbol": "b",
+  "spotNum": 301,
+  "vehicle": {
+    "$oid": "67e906340e5ab887b7caab6e"
+  }
+},
+{
+  "_id": {
+    "$oid": "67e906f20e5ab887b7caab7b"
+  },
+  "size": 2,
+  "symbol": "c",
+  "spotNum": 302,
+  "vehicle": {
+    "$oid": "67e906340e5ab887b7caab6e"
+  }
+},
+{
+  "_id": {
+    "$oid": "67e907070e5ab887b7caab7c"
+  },
+  "size": 1,
+  "symbol": "m",
+  "spotNum": 303,
+  "vehicle": {
+    "$oid": "67e906340e5ab887b7caab6e"
+  }
+}]
