@@ -1,7 +1,4 @@
-import Level from "../models/Level";
-
-
-export default class ParkingLot{
+export default class ParkingLot {
     _levels;
 
     static schema = {};

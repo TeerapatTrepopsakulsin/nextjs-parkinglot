@@ -5,7 +5,7 @@ import Car from '../models/Car.js';
 import ParkingSpot from "../models/ParkingSpot.js";
 import Vehicle from '../models/Vehicle.js';
 import Level from '../models/Level.js';
-import ParkingLot from './ParkingLot.js';
+import ParkingLot from '../models/ParkingLot.js';
 
 
 export default class ModelManager {
@@ -64,5 +64,9 @@ export default class ModelManager {
             }
         }
         return ModelManager.instance
+    }
+
+    async parkingLotJsonSchema() {
+        return await this.parkingLotModel.find({}).populate(this.jsonSchema).exec();
     }
 }
