@@ -26,18 +26,19 @@ export default async function handler(req, res) {
                 let vehicle;
                 switch (req.body.vehicleType) {
                     case 'Motorcycle':
-                        vehicle = null;
+                        vehicle = await model.motorcycleModel.create(req.body);
                         break;
                     case 'Bus':
-                        vehicle = null;
+                        vehicle = await model.busModel.create(req.body);
                         break;
                     default:
                         vehicle = await model.carModel.create(req.body);
                 }
-                // const car = await model.carModel.create(req.body);
-                // // const dummyCar = await model.carModel.findOne({})
-                // // const ret = await parkingLotManager.park(dummyCar);
-                await parkingLotManager.park(vehicle);
+
+                let parkingLot = await model.parkingLotModel.findOne({});
+
+                await parkingLotManager.park(parkingLot, vehicle);
+
                 res.status(201).json({ success: true, data: req.body });
             } catch (error) {
                 res.status(400).json({ success: false, message: error.message });

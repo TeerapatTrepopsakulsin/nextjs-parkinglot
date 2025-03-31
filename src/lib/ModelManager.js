@@ -6,6 +6,8 @@ import ParkingSpot from "../models/ParkingSpot.js";
 import Vehicle from '../models/Vehicle.js';
 import Level from '../models/Level.js';
 import ParkingLot from '../models/ParkingLot.js';
+import Motorcycle from '../models/Motorcycle.js';
+import Bus from '../models/Bus.js';
 
 
 export default class ModelManager {
@@ -35,6 +37,12 @@ export default class ModelManager {
 
             // Car
             this.carModel = mongoose.models.Car || this.vehicleModel.discriminator('Car', Car.schema);
+
+            // Motorcycle
+            this.motorcycleModel = mongoose.models.Motorcycle || this.vehicleModel.discriminator('Motorcycle', Motorcycle.schema);
+
+            // Bus
+            this.busModel = mongoose.models.Bus || this.vehicleModel.discriminator('Bus', Bus.schema);
 
             // Parking Spot
             let spotSchema = ParkingSpot.schema;
