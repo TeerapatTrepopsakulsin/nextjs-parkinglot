@@ -75,6 +75,6 @@ export default class ModelManager {
     }
 
     async parkingLotJsonSchema() {
-        return await this.parkingLotModel.find({}).populate(this.jsonSchema).exec();
+        return await this.parkingLotModel.find({}).populate(this.jsonSchema);
     }
 }

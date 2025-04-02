@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 
 export default function Home() {
     const [parkingLots, setParkingLot] = useState([]);
+    const [availableSpots, setAvailableSpots] = useState([]);
     const [form, setForm] = useState({ vehicleType: '', license: '' });
 
     useEffect(() => {
@@ -36,6 +37,22 @@ export default function Home() {
         }
     };
 
+    const handleDeleteVehicle = async (spotId) => {
+        try {
+            await fetch('/api/parking-lot', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(spotId)
+            });
+            fetchParkingLot();
+        } catch (error) {
+            console.log(error);
+        }
+
+    };
+
     return (
         <div>
             <h1>Parking Lots of Software Design</h1>
@@ -55,6 +72,8 @@ export default function Home() {
                 <button type="submit">Park Vehicle</button>
             </form>
 
+            <h3>Available Spots: {availableSpots}</h3>
+
             <ul>
                 {Array.isArray(parkingLots) && parkingLots.length > 0 ? (
                     parkingLots.map((parkingLot) => (
@@ -73,6 +92,11 @@ export default function Home() {
                                                         ) : (
                                                             <>{spot.symbol} - EMPTY</>
                                                         )}
+
+                                                        <button onClick={() => handleDeleteVehicle(spot._id)} style={{ marginLeft: '10px' }}>
+                                                            Remove
+                                                        </button>
+
                                                     </li>
                                                 ))
                                             ) : (
