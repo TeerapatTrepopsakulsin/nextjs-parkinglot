@@ -1,6 +1,3 @@
-import ParkingSpot from "./ParkingSpot";
-
-
 export default class Level{
     _floor;
     _spots;

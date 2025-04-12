@@ -26,8 +26,6 @@ export default class ModelManager {
         if (ModelManager.instance == null) {
             ModelManager.instance = this;
 
-            // Initialisation
-            // ModelManager.itemModel = mongoose.models.Item || mongoose.model('Item', ItemSchema);
 
             // Vehicle Base Model
             let vehicleSchema = new mongoose.Schema(

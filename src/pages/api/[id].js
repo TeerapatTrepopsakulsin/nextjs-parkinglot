@@ -1,6 +1,8 @@
 // pages/api/items/[id].js
-import dbConnect from '../../lib/mongodb';
-import Item from '../../models/Item';
+import mongodb from '../../lib/mongodb';
+import ModelManager from '../../lib/ModelManager';
+import ParkingLotManager from "../../lib/ParkingLotManager";
+
 
 export default async function handler(req, res) {
     const {
@@ -8,31 +10,20 @@ export default async function handler(req, res) {
         method,
     } = req;
 
-    await dbConnect();
+    const db = new mongodb();
+    await db.dbConnect();
+
+    const model = new ModelManager();
+    const parkingLotManager = new ParkingLotManager();
 
     switch (method) {
-        case 'PUT':
-            try {
-                const item = await Item.findByIdAndUpdate(id, req.body, {
-                    new: true,
-                    runValidators: true,
-                });
-                if (!item) {
-                    return res.status(400).json({ success: false });
-                }
-                res.status(200).json({ success: true, data: item });
-            } catch (error) {
-                res.status(400).json({ success: false, message: error.message });
-            }
-            break;
-
         case 'DELETE':
             try {
-                const deletedItem = await Item.deleteOne({ _id: id });
-                if (!deletedItem) {
+                const deletedVehicle = await model.vehicleModel.deleteOne({ _id: id });
+                if (!deletedVehicle) {
                     return res.status(400).json({ success: false });
                 }
-                res.status(200).json({ success: true, data: {} });
+                res.status(200).json({ success: true, data: deletedVehicle });
             } catch (error) {
                 res.status(400).json({ success: false, message: error.message });
             }

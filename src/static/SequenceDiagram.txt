@@ -1,0 +1,133 @@
+actor User
+participant page
+participant api
+participant ModelManager
+participant ParkingLotManager
+participant vehicleModel
+participant parkingLotModel
+participant levelModel
+participant parkingSpotModel
+
+User->page: Park Vehicle (handleSubmit)
+activate page
+page->api:POST /api/parking-lot
+activate api
+
+api-> ModelManager: get instance
+activate ModelManager
+api<-- ModelManager: instance
+deactivate ModelManager
+
+api-> ParkingLotManager: get instance
+activate ParkingLotManager
+api<-- ParkingLotManager: instance
+deactivate ParkingLotManager
+
+api-->*vehicleModel: create
+api<--vehicleModel: instance
+
+api->parkingLotModel: findOne
+activate parkingLotModel
+api<--parkingLotModel: return parkingLot data
+deactivate parkingLotModel
+
+api->ParkingLotManager: park(pakingLotModel, vehicleModel)
+activate ParkingLotManager
+ParkingLotManager->ModelManager: jsonSchema
+activate ModelManager
+ParkingLotManager<--ModelManager: return jsonSchema
+deactivate ModelManager
+ParkingLotManager->parkingLotModel: populate(jsonSchema)
+activate parkingLotModel
+
+
+ParkingLotManager<--parkingLotModel: return Full parkingLot Data
+deactivate parkingLotModel
+
+loop For level in parkingLot Data
+    ParkingLotManager->levelModel: spots
+activate levelModel
+ParkingLotManager<--levelModel: return spot Data
+deactivate levelModel
+    loop For spot in level
+
+    ParkingLotManager->parkingSpotModel: vehicle
+    activate parkingSpotModel
+    ParkingLotManager<--parkingSpotModel: return vehicle Data
+    deactivate parkingSpotModel
+    ParkingLotManager->vehicleModel: size
+    activate vehicleModel
+
+ParkingLotManager<--vehicleModel:return vehicle's size
+deactivate vehicleModel
+ParkingLotManager->parkingSpotModel:size
+activate parkingSpotModel
+ParkingLotManager<--parkingSpotModel:return spot's size
+deactivate parkingSpotModel
+alt If spot is empty and vehicle can fit
+
+ParkingLotManager->vehicleModel:id
+activate vehicleModel
+ParkingLotManager<--vehicleModel:return vehicle's ID
+deactivate vehicleModel
+ParkingLotManager->parkingSpotModel:set vehicle to be parked vehicle's ID
+activate parkingSpotModel
+deactivateafter parkingSpotModel
+ParkingLotManager->parkingSpotModel:save
+activate parkingSpotModel
+deactivateafter parkingSpotModel
+note over ParkingLotManager: Vehicle parked successfully
+
+api<--ParkingLotManager:return true
+
+deactivate ParkingLotManager
+           end
+    end
+end
+
+
+page<--api:response
+deactivate api
+page->page:fetchParkingLot
+activate page
+page->api:GET /api/parking-lot
+activate api
+api-> ModelManager: get instance
+activate ModelManager
+api<-- ModelManager: instance
+deactivate ModelManager
+
+api-> ParkingLotManager: get instance
+activate ParkingLotManager
+api<-- ParkingLotManager: instance
+deactivate ParkingLotManager
+api->ModelManager:parkingLotJsonSchema
+activate ModelManager
+ModelManager->ModelManager:parkingLotModel
+
+activate ModelManager
+deactivateafter ModelManager
+ModelManager->parkingLotModel:find
+activate parkingLotModel
+ModelManager<--parkingLotModel:return parkingLot Data
+deactivate parkingLotModel
+ModelManager->ModelManager:jsonSchema
+activate ModelManager
+deactivateafter ModelManager
+ModelManager->parkingLotModel:populate(jsonSchema)
+activate parkingLotModel
+ModelManager<--parkingLotModel:return Full parkingLot Data
+deactivate parkingLotModel
+api<--ModelManager:return Full parkingLot Data
+deactivate ModelManager
+page<--api:response
+deactivate api
+page->page:setParkingLot
+activate page
+deactivateafter page
+deactivateafter page
+page->page:setForm
+activate page
+deactivateafter page
+User<-page:Display ParkingLot
+deactivate page

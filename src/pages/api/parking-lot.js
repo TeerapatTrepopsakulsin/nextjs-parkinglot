@@ -16,12 +16,7 @@ export default async function handler(req, res) {
         case 'GET':
             try {
                 let parkingLot = await model.parkingLotJsonSchema();
-                let count = await parkingLotManager.count(model.parkingLotModel.findOne({}));
-                let data = {
-                    count: count,
-                    parkingLot: parkingLot,
-                }
-                res.status(200).json({ success: true, data: data.parkingLot });
+                res.status(200).json({ success: true, data: parkingLot });
             } catch (error) {
                 res.status(400).json({ success: false , message: error.message });
             }

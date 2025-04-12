@@ -1,6 +1,3 @@
-import Vehicle from "./Vehicle";
-
-
 export default class ParkingSpot {
     _size;
     _symbol;
